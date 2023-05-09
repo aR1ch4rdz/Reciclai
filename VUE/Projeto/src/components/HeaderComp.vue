@@ -1,6 +1,5 @@
 <script setup>
-  
-  
+  import { logedUser } from '../assets/variaveis';
 </script>
 
 <template>
@@ -10,7 +9,9 @@
       <nav>
         <RouterLink class="nav-item" to="/">Home</RouterLink>
         <RouterLink class="nav-item" to="/sobre">Sobre</RouterLink>
-        <RouterLink class="nav-item" to="/register">Registrar</RouterLink>
+        <RouterLink v-if="logedUser.isLoged == false" class="nav-item" to="/register">Registrar</RouterLink>
+        <RouterLink v-if="logedUser.isLoged == false" class="nav-item" to="/login">Login</RouterLink>
+        <RouterLink v-if="logedUser.isLoged" class="nav-item" to="/userpage">{{ logedUser.name }}</RouterLink>
       </nav>
     </div>
   </header>

@@ -1,3 +1,3 @@
 <?php
 
-define('DATA_SRC', './empresa.csv');
+define('DATA_SRC', 'empresa.csv');

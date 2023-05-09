@@ -1,24 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php 
+    header("Access-Control-Allow-Origin: *");
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+    $fp = fopen('empresa.csv','r');
 
-<body>
-    <?php
+    $data = [];
+    
+    while(($row = fgetcsv($fp)) !== false){
+        $data[] = [
+            "name" => $row[0],
+            "email" => $row[1],
+            "cnpj" => $row[2],
+            "telefone" => $row[3],
+        ];
+    }
 
-    $data = file_get_contents('http://localhost:8080/showInformation.php');
-    var_dump($data);
-    // $finalData = json_decode($data, true);
-    // foreach ($finalData as $users) {
-    //     echo $users['name'] . '<br>';
-    // }
-
-    ?>
-</body>
-
-</html>
+    echo json_encode($data);
+?>
