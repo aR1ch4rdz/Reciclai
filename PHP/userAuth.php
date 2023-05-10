@@ -2,7 +2,7 @@
 include 'config.php';
 header("Access-Control-Allow-Origin: *");
 $fp = fopen(DATA_SRC, 'r');
-$data = [];
+$data = null;
 
 $isFound = false;
 
@@ -11,7 +11,7 @@ $password = $_POST['password'];
 
 while (($row = fgetcsv($fp)) !== false) {
     if ($email == $row[1] && $password == $row[4]) {
-        $data[] = [
+        $data = [
             'nome' => $row[0],
             'email' => $row[1],
             'cnpj' => $row[2],

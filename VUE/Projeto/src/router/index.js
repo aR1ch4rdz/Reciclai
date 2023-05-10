@@ -59,13 +59,6 @@ const router = createRouter({
       path: '/login',
       name: 'login',
       component: () => import('../views/LoginView.vue'),
-      beforeEnter: (to, from, next) => {
-        if (to.path === '/login' && !logedUser.isLoged) {
-          next();
-        } else {
-          next('/userpage');
-        }
-      }
     },
     {
       path: '/empresas',

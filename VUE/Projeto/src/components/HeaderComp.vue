@@ -12,6 +12,7 @@
         <RouterLink v-if="logedUser.isLoged == false" class="nav-item" to="/register">Registrar</RouterLink>
         <RouterLink v-if="logedUser.isLoged == false" class="nav-item" to="/login">Login</RouterLink>
         <RouterLink v-if="logedUser.isLoged" class="nav-item" to="/userpage">{{ logedUser.name }}</RouterLink>
+        <RouterLink v-if="logedUser.isLoged == true" class="nav-item" to="/login">LOGOUT</RouterLink>
       </nav>
     </div>
   </header>

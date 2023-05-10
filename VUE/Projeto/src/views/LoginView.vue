@@ -1,7 +1,9 @@
 <script setup>
 import { reactive, onMounted } from "vue";
-import { logedUser, setIsLoged } from "../assets/variaveis";
+import { logedUser, setIsLoged, userLogout } from "../assets/variaveis";
 import { RouterLink } from "vue-router";
+
+userLogout()
 
 const login = reactive({
   email: "",
@@ -20,13 +22,10 @@ async function submitForm(user) {
   }).then(async (res) => {
     if (res.status == 302) {
       data = await res.json()
-      setIsLoged(true, data[0].nome, data[0].email, data[0].telefone, data[0].cnpj)
-      logado()
+      setIsLoged(true, data.nome, data.email, data.telefone, data.cnpj)
     } 
   })
-
 }
-
 </script>
 
 <template>
@@ -47,8 +46,8 @@ async function submitForm(user) {
     </form>
     <div v-else class="loged-message">
       <h1>Usuario Conectado</h1>
-      <p>Clique no botão abaixo para acessar a sua página</p>
       <div class="page-btn">
+      <p>Clique no botão abaixo para acessar a sua página</p>
         <RouterLink to="/userpage">Ir para pagina</RouterLink>
       </div>
     </div>
