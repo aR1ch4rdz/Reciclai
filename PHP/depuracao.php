@@ -1,24 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php 
+    include 'config.php';
+    header("Access-Control-Allow-Origin: *");
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+    $data = [];
+    try{
+        $sql = $conn->query('SELECT * FROM empresa');
+    
+        foreach($sql as $row){
+           // print_r($row);
+          $data[] = [
+             "cnpj" => $row[0],
+             "name" => $row[1],
+             "email" => $row[2],
+             "telefone" => $row[3]
+            ];
+        }
 
-<body>
-    <?php
+    } catch(PDOException $e){
+        echo 'ERROR: ' . $e->getMessage();
+    }
 
-    $data = file_get_contents('http://localhost:8080/showInformation.php');
-    var_dump($data);
-    // $finalData = json_decode($data, true);
-    // foreach ($finalData as $users) {
-    //     echo $users['name'] . '<br>';
-    // }
-
-    ?>
-</body>
-
-</html>
+    echo json_encode($data);
+?>

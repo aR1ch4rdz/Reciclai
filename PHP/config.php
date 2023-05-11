@@ -1,3 +1,11 @@
 <?php
+$user = "root";
+$password = "batatamysql";
 
-define('DATA_SRC', './empresa.csv');
+try{
+    $conn = new PDO('mysql:host=localhost:3306;dbname=reciclaAI', $user, $password);
+}catch(PDOException $e){
+    echo 'ERROR: ' . $e->getMessage();
+}
+
+?>
