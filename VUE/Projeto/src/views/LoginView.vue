@@ -3,6 +3,12 @@ import { reactive, onMounted } from "vue";
 import { logedUser, setIsLoged, userLogout } from "../assets/variaveis";
 import { RouterLink } from "vue-router";
 
+function resetInputs(){
+  login.email = ""
+  login.senha = ""
+  
+}
+
 userLogout()
 
 const login = reactive({
@@ -20,10 +26,12 @@ async function submitForm(user) {
     method: 'POST',
     body: formData
   }).then(async (res) => {
-    if (res.status == 302) {
+    if (res.status == 200) {
       data = await res.json()
-      setIsLoged(true, data.nome, data.email, data.telefone, data.cnpj)
+      setIsLoged(true, data[0].name, data[0].email, data[0].telefone, data[0].cnpj)
     } 
+  }).finally(()=>{
+    resetInputs()
   })
 }
 </script>
@@ -46,8 +54,8 @@ async function submitForm(user) {
     </form>
     <div v-else class="loged-message">
       <h1>Usuario Conectado</h1>
-      <div class="page-btn">
       <p>Clique no botão abaixo para acessar a sua página</p>
+      <div class="page-btn">
         <RouterLink to="/userpage">Ir para pagina</RouterLink>
       </div>
     </div>

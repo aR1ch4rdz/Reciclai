@@ -15,6 +15,7 @@ let empresas = await res.json()
 </template>
 
 <style scoped>
+  
   div.empresa{
     width: 50%;
     height: max-content;

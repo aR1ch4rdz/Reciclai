@@ -23,7 +23,9 @@ export function setIsLoged(userStatus,userName,userEmail,userPhone,userCNPJ){
   logedUser.cnpj = userCNPJ;
 
   if(logedUser.isLoged){
-    sessionStorage.setItem('user', JSON.stringify(logedUser)) 
+    sessionStorage.setItem('user', JSON.stringify(logedUser))
+    console.log(sessionStorage.getItem('user'))
+    console.log(logedUser) 
   }
 }
 
