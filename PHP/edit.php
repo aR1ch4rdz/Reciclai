@@ -1,31 +1,29 @@
 <?php
-
 include 'auth.php';
 include 'config.php';
 
 $name = $_POST['name'];
 $email = $_POST['email'];
 $phone = $_POST['phone'];
-$cnpj = $_POST['cnpj'];
-$cep = $_POST['cep'];
+$cnpj = 12345678901234 ; //$_POST['cnpj'];
+//$cep = $_POST['cep'];
 $password = $_POST['password'];
 
 ### Falta validar o CEP
+try{
+$sql = $conn->prepare('UPDATE empresa SET 
+nome_emp=:nome, email_emp=:email, tel_emp=:phone, senha_emp=:pass
+WHERE cnpj_emp = :cnpj
+');
 
-$originalFile = fopen(DATA_SRC, 'r');
-$temp = tempnam('.', '');
-$tempFile = fopen($temp, 'w');
-
-while (($row = fgetcsv($originalFile)) !== false) {
-    if ($row[0] != $email) {
-        fputcsv($tempFile, $row);
-    } else {
-        fputcsv($tempFile, [$email, $name, $phone, $password, $cnpj, $cep]);
-    }
+$sql->execute([
+    ':cnpj' => $cnpj,
+    ':nome' => $name,
+    ':email' => $email,
+    ':phone' => $phone,
+    ':pass' => $password
+]);
+}catch(PDOException $e){
+    echo 'ERROR: ' . $e->getMessage();
 }
-
-fclose($originalFile);
-fclose($tempFile);
-
-rename($temp, DATA_SRC);
 http_response_code(302);

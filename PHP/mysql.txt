@@ -1,0 +1,64 @@
+CREATE DATABASE reciclaAI;
+USE reciclaAI;
+
+CREATE TABLE empresa (
+	cnpj_emp BIGINT NOT NULL,
+    nome_emp VARCHAR(50) NOT NULL,
+    email_emp VARCHAR(50) NOT NULL,
+    tel_emp BIGINT NOT NULL,
+    senha_emp INT NOT NULL,
+    CONSTRAINT pk_emp PRIMARY KEY (cnpj_emp)
+);
+
+CREATE TABLE endereco (
+	id_end INT NOT NULL AUTO_INCREMENT,
+	cep_end BIGINT NOT NULL,
+    nome_end VARCHAR(50) NOT NULL,
+    estado_end VARCHAR(50) NOT NULL,
+    cidade_end VARCHAR(50) NOT NULL,
+    bairro_end VARCHAR(50) NOT NULL,
+    refer_end VARCHAR(50) NOT NULL,
+    cnpj_emp BIGINT NOT NULL,
+    CONSTRAINT pk_end PRIMARY KEY (id_end),
+    FOREIGN KEY (cnpj_emp) REFERENCES empresa(cnpj_emp)
+);
+
+CREATE TABLE administrador (
+	nome_adm VARCHAR(50) NOT NULL,
+    email_adm VARCHAR(50) NOT NULL,
+    senha_adm INT NOT NULL,
+    cnpj_emp BIGINT NOT NULL,
+    CONSTRAINT pk_adm PRIMARY KEY (email_adm),
+    FOREIGN KEY (cnpj_emp) REFERENCES empresa(cnpj_emp)
+);
+
+-- ainda falta colocar mais coisas como chave estrangeira e ve o relacionamento da tabela usuario com empresa
+CREATE table usuario (
+	id_usr INT PRIMARY KEY AUTO_INCREMENT,
+    nome_usr VARCHAR(50),
+    email_usr VARCHAR(50),
+    tel_usr INT(12),
+    senha_usr VARCHAR(16)
+); 
+
+
+
+INSERT INTO empresa (cnpj_emp, nome_emp, email_emp, tel_emp, senha_emp)
+VALUES 
+(12345678901234, 'Empresa A', 'empresa_a@mail.com', 1234567890, 123456),
+(56789012345678, 'Empresa B', 'empresa_b@mail.com', 9876543210, 654321),
+(90123456789012, 'Empresa C', 'empresa_c@mail.com', 5555555555, 111111);
+
+-- Inserts para tabela administrador
+INSERT INTO administrador (nome_adm, email_adm, senha_adm, cnpj_emp)
+VALUES 
+('Admin A', 'admin_a@mail.com', 123456, 12345678901234),
+('Admin B', 'admin_b@mail.com', 654321, 56789012345678),
+('Admin C', 'admin_c@mail.com', 111111, 90123456789012);
+
+-- Inserts para tabela endereco
+INSERT INTO endereco (id_end, cep_end, nome_end, estado_end, cidade_end, bairro_end, refer_end, cnpj_emp)
+VALUES 
+(1, 12345678, 'Rua A', 'Estado A', 'Cidade A', 'Bairro A', 'Referencia A', 12345678901234),
+(2, 23456789, 'Rua B', 'Estado B', 'Cidade B', 'Bairro B', 'Referencia B', 56789012345678),
+(3, 34567890, 'Rua C', 'Estado C', 'Cidade C', 'Bairro C', 'Referencia C', 90123456789012);

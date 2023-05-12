@@ -1,5 +1,7 @@
 <script setup>
 import { reactive, ref } from 'vue';
+import { logedUser, setIsLoged } from "../assets/variaveis"
+
 
 const user = reactive({
   nome: "",
@@ -57,26 +59,25 @@ function showPass() {
 const senha = ref([]);
 const senhaConfirmar = ref([]);
 
-
 </script>
 
 <template>
-  <form @submit.prevent="formSubmit(user)">
+  <form v-if="logedUser.isLoged == false" @submit.prevent="formSubmit(user)">
     <h1>Registrar Empresa</h1>
     <div class="input-wrapper">
-      <input type="text" placeholder="" v-model="user.nome">
+      <input required type="text" placeholder="" v-model="user.nome">
       <label>Nome</label>
     </div>
     <div class="input-wrapper">
-      <input type="email" placeholder="" v-model="user.email">
+      <input required type="email" placeholder="" v-model="user.email">
       <label>Email</label>
     </div>
     <div class="input-wrapper">
-      <input type="text" placeholder="" v-model="user.cnpj">
+      <input required type="text" minlength="14" maxlength="14" placeholder="" v-model="user.cnpj">
       <label>CNPJ</label>
     </div>
     <div class="input-wrapper">
-      <input type="text" placeholder="" v-model="user.telefone">
+      <input required type="text" placeholder="" v-model="user.telefone">
       <label>Telefone</label>
     </div>
     <div class="input-wrapper">
@@ -92,7 +93,7 @@ const senhaConfirmar = ref([]);
 <style scoped>
 form {
   margin-top: 2rem;
-  height: 100%;
+  height: 80%;
   width: 100%;
   display: flex;
   justify-content: flex-start;
