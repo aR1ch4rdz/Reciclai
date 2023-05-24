@@ -1,16 +1,16 @@
 <?php
 include 'config.php';
+header("Access-Control-Allow-Origin: *");
 
-$email = $_POST['email'];
-$password = $_POST['password'];
+$email = $_POST['email'] ?? $_GET['email'];
+$password = $_POST['password'] ?? $_GET['password'];
 
-$sql = $conn->query('SELECT * FROM empresa');
-    
-    foreach($sql as $row){
-        if ($email == $row[2] && $password == $row[4]){
-            http_response_code(401);
-            exit();
-        }
-    }
+$sql = $conn->query("SELECT USR_ID, USR_NAME, USR_TYPE, USR_EMAIL, USR_PHONE FROM APP_USUARIO WHERE USR_EMAIL = '$email' AND USR_SENHA = '$password'");
 
-http_response_code(302);
+$data = $sql->fetchAll(PDO::FETCH_ASSOC);
+
+if(count($data) == 0){
+    echo json_encode(["erro" => "User Not Found"]);
+}else{
+    echo json_encode($data);
+}
