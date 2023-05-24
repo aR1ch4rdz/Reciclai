@@ -32,16 +32,7 @@ const router = createRouter({
     {
       path: '/map',
       name: 'map',
-      component: () => import('../views/MapView.vue'),
-      beforeEnter: (to, from, next) => {
-        if (to.path === '/map' && !logedUser.isLoged) {
-          // Redirecione para a página de login se a rota é '/map' e o usuário não está autenticado
-          next('/login');
-        } else {
-          // Continue normalmente para a próxima rota
-          next();
-        }
-      }
+      component: () => import('../views/MapView.vue')
     },
     {
       path: '/userpage',
