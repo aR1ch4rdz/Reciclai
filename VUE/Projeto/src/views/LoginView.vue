@@ -3,10 +3,9 @@ import { reactive, onMounted } from "vue";
 import { logedUser, setIsLoged, userLogout } from "../assets/variaveis";
 import { RouterLink } from "vue-router";
 
-function resetInputs(){
+function resetInputs() {
   login.email = ""
   login.senha = ""
-  
 }
 
 userLogout()
@@ -21,16 +20,16 @@ async function submitForm(user) {
   let formData = new FormData();
   formData.append("email", user.email);
   formData.append("password", user.senha);
-  
-  let response = await fetch('http://localhost:8005/userAuth.php', {
+
+  let response = await fetch('http://localhost:8005/actionLogin.php', {
     method: 'POST',
     body: formData
   }).then(async (res) => {
     if (res.status == 200) {
       data = await res.json()
-      setIsLoged(true, data[0].name, data[0].email, data[0].telefone, data[0].cnpj)
-    } 
-  }).finally(()=>{
+      setIsLoged(true, data[0].USR_ID, data[0].USR_NAME, data[0].USR_TYPE, data[0].USR_EMAIL, data[0].USR_PHONE)
+    }
+  }).finally(() => {
     resetInputs()
   })
 }
@@ -143,7 +142,7 @@ button.register-btn {
   font-size: 1em;
 }
 
-.loged-message{
+.loged-message {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -152,17 +151,19 @@ button.register-btn {
   flex-direction: column;
 }
 
-.loged-message h1{
+.loged-message h1 {
   color: var(--green);
 }
-.page-btn{
+
+.page-btn {
 
   border-radius: 0.8em;
   width: 20%;
   background-color: var(--green);
   padding: 0.3em;
 }
-.loged-message a{
+
+.loged-message a {
   font-size: 1em;
   font-weight: bold;
   color: var(--white);
