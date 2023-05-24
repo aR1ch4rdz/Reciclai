@@ -1,25 +1,26 @@
 <script setup>
 
-let res = await fetch("http://localhost:8005/depuracao.php")
+let res = await fetch("http://localhost:8005/getUnderReview.php")
 let empresas = await res.json()
 
 </script>
 
 <template>
   <div v-for="empresa in empresas" class="empresa">
-    <h1>{{ empresa.name }}</h1>
-    <p>Email - {{ empresa.email }}</p>
-    <p>Telefone - {{ empresa.telefone }}</p>
-    <p>Cnpj - {{ empresa.cnpj }}</p>
+    <h1>{{ empresa.EMP_ID }}</h1>
+    <p>CNPJ - {{ empresa.EMP_CNPJ }}</p>
+    <p>Telefone - {{ empresa.EMP_STATUS }}</p>
   </div>
 </template>
 
 <style scoped>
   
   div.empresa{
-    width: 50%;
+    border-radius: 0.5em;
+    padding: 1em;
+    height: 25%;
+    box-shadow: hsla(0, 0%, 0%, 0.384) 0px 0px 5px;
     height: max-content;
-    border: solid 1px ;
   }
   h1{
     font-weight: bold;
