@@ -61,4 +61,7 @@
   .currentPos{
     color: var(--green);
   }
+  a{
+    text-decoration: none;
+  }
 </style>
