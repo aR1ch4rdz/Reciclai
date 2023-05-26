@@ -7,9 +7,9 @@
     <div class="wrapper">
     <div class="logo-wrapper"><img alt="Recicla ai logo" class="logo" src="@/assets/logo.svg"/></div>
       <nav>
-        <RouterLink class="nav-item" to="/">Home</RouterLink>
-        <RouterLink class="nav-item" to="/sobre">Sobre</RouterLink>
-        <RouterLink v-if="logedUser.isLoged == false" class="nav-item" to="/register">Registrar</RouterLink>
+        <RouterLink v-if="logedUser.type != 'ADMIN'" class="nav-item" to="/">Home</RouterLink>
+        <RouterLink v-if="logedUser.type == 'ADMIN'" class="nav-item" to="/dashboard">Visão Geral</RouterLink>
+        <RouterLink v-if="logedUser.type != 'ADMIN'" class="nav-item" to="/sobre">Sobre</RouterLink>
         <RouterLink v-if="logedUser.isLoged == false" class="nav-item" to="/login">Login</RouterLink>
         <RouterLink v-if="logedUser.isLoged" class="nav-item" to="/userpage">{{ logedUser.name }}</RouterLink>
         <RouterLink v-if="logedUser.isLoged == true" class="nav-item" to="/login">LOGOUT</RouterLink>
@@ -27,7 +27,9 @@
     box-shadow: hsla(0, 0%, 0%, 0.384) 0px 0px 5px;
     padding: 0.2em;
     font-weight: 500;
+    z-index: 1000;
     font-size: 1.2em;
+    border-bottom: solid #ccc 1px;
   }
   div.wrapper{
     display: flex;
@@ -42,7 +44,7 @@
   }
 
   nav{
-    height:100%;
+    min-height:100%;
     width: 85%;
     display: flex;
     align-items: center;

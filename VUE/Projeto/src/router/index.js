@@ -15,7 +15,6 @@ const router = createRouter({
       path: '/sobre',
       name: 'sobre',
       component: () => import('../views/AboutView.vue'),
-
     },
     {
       path: '/register',
@@ -35,6 +34,18 @@ const router = createRouter({
       component: () => import('../views/MapView.vue')
     },
     {
+      path: '/dashboard',
+      name: 'dashboard',
+      component: () => import('../views/DashboardView.vue'),
+      beforeEnter: (to, from, next) => {
+        if (to.path === '/dashboard' && logedUser.type != "ADMIN") {
+          next('/');
+        } else {
+          next();
+        }
+      }
+    },
+    {
       path: '/userpage',
       name: 'userpage',
       component: () => import('../views/UserPage.vue'),
@@ -52,9 +63,9 @@ const router = createRouter({
       component: () => import('../views/LoginView.vue'),
     },
     {
-      path: '/empresas',
-      name: 'empresas',
-      component: () => import('../views/EmpresasView.vue'),
+      path: '/dashboard/pontos',
+      name: 'pontos',
+      component: () => import('../views/PontosDeColetaView.vue'),
     }
   ]
 });
