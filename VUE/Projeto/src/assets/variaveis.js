@@ -27,7 +27,7 @@ export function setIsLoged(userStatus, userID , userName, userType, userEmail, u
 
   if(logedUser.isLoged){
     sessionStorage.setItem('user', JSON.stringify(logedUser))
-    router.push('/userPage')
+    router.push('/dashboard')
   }
 }
 

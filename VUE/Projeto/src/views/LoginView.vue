@@ -1,7 +1,6 @@
 <script setup>
 import { reactive, onMounted } from "vue";
 import { logedUser, setIsLoged, userLogout } from "../assets/variaveis";
-import { RouterLink } from "vue-router";
 
 function resetInputs() {
   login.email = ""
@@ -51,13 +50,6 @@ async function submitForm(user) {
         <button class="register-btn">Fazer Login</button>
       </div>
     </form>
-    <div v-else class="loged-message">
-      <h1>Usuario Conectado</h1>
-      <p>Clique no botão abaixo para acessar a sua página</p>
-      <div class="page-btn">
-        <RouterLink to="/userpage">Ir para pagina</RouterLink>
-      </div>
-    </div>
   </div>
 </template>
 
@@ -140,35 +132,5 @@ button.register-btn {
   color: var(--white);
   font-weight: bold;
   font-size: 1em;
-}
-
-.loged-message {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.2em;
-  flex-direction: column;
-}
-
-.loged-message h1 {
-  color: var(--green);
-}
-
-.page-btn {
-
-  border-radius: 0.8em;
-  width: 20%;
-  background-color: var(--green);
-  padding: 0.3em;
-}
-
-.loged-message a {
-  font-size: 1em;
-  font-weight: bold;
-  color: var(--white);
-  display: inline-block;
-  width: 100%;
-  text-align: center;
 }
 </style>

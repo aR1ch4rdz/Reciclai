@@ -1,3 +1,7 @@
+<script setup>
+
+</script>
+
 <template>
   <div class="about">
     <h1>This was proposed to be an about page</h1>
