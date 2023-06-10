@@ -1,5 +1,6 @@
 <script setup>
 import { Suspense } from "vue";
+import { showHeader } from "../assets/variaveis";
 import router from "../router/index"
 import DashMenu from "../components/DashMenu.vue"
 import TotalCard from "../components/TotalCard.vue"
@@ -8,31 +9,42 @@ function moveUser() {
 	router.push('/dashboard/pontos')
 }
 
+
 </script>
 
 <template>
 	<div class="content-wrapper">
 		<DashMenu></DashMenu>
-		<Suspense>
-			<div class="dashinfo-wrapper">
-				<div class="dash-row">
-					<TotalCard icon="build" path="getEmpTotal.php" card="Total de empresa" />
-					<TotalCard @click="moveUser()" icon="map" path="getPDCTotal.php" card="Total de Pontos" />
-					<TotalCard icon="map" path="getEmpTotal.php" card="Pontos pendentes" />
+		<div class="content">
+			<Suspense>
+				<div class="dashinfo-wrapper">
+					<div class="dash-row">
+						<TotalCard icon="build" path="getEmpTotal.php" card="Total de empresa" />
+						<TotalCard @click="moveUser()" icon="map" path="getPDCTotal.php" card="Total de Pontos" />
+						<TotalCard icon="map" path="getEmpTotal.php" card="Pontos pendentes" />
+					</div>
+					<div class="graph-wrapper">
+						<Graph />
+					</div>
 				</div>
-				<div class="graph-wrapper">
-					<Graph />
-				</div>
-			</div>
-		</Suspense>
+			</Suspense>
+		</div>
 	</div>
 </template>
 
 <style scoped>
+.content{
+	margin-left: 15%;
+	margin-top: 10vh;
+	display: flex;
+	width: 100%;
+	height: 100%;
+	overflow-y: scroll;
+}
 .content-wrapper {
 	display: flex;
 	width: 100%;
-	height: 90%;
+	height: 100%;
 }
 div.graph-wrapper{
 	text-align: center;

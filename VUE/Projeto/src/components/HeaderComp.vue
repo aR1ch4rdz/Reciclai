@@ -1,9 +1,17 @@
 <script setup>
-  import { logedUser } from '../assets/variaveis';
+  import { logedUser, userLocation, showHeader } from '../assets/variaveis';
+  import { ref, onBeforeMount } from 'vue';
+  
+  onBeforeMount(() => {
+    if(userLocation.value === '/register' || userLocation.value === '/login'){
+      showHeader.value = false
+    }
+  });
+
 </script>
 
 <template>
-  <header>
+  <header v-if="showHeader">
     <div class="wrapper">
     <div class="logo-wrapper"><img alt="Recicla ai logo" class="logo" src="@/assets/logo.svg"/></div>
       <nav>
@@ -23,14 +31,19 @@
     height: 100%;
   }
   header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
     height: 10%;
+    background-color: var(--white);
     box-shadow: hsla(0, 0%, 0%, 0.384) 0px 0px 5px;
     padding: 0.2em;
     font-weight: 500;
     z-index: 1000;
     font-size: 1.2em;
     border-bottom: solid #ccc 1px;
-  }
+  } 
   div.wrapper{
     display: flex;
     height: 100%;

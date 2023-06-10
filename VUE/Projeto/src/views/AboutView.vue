@@ -10,6 +10,7 @@
 
 <style scoped>
   div.about{
+    margin-top: 10vh;
     width: 100%;
     height: 90%;
   }

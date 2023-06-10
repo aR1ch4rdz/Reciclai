@@ -1,10 +1,12 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import HeaderComp from "./components/HeaderComp.vue"
+import { userLocation } from "./assets/variaveis"
 </script>
 
 <template>
-  <HeaderComp />
+  <HeaderComp v-if="userLocation.value !== '/registrar' && userLocation.value !== '/login' " />
+
   <RouterView />
 </template>
 

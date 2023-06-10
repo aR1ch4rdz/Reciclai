@@ -1,15 +1,19 @@
 <script setup>
 import { reactive, ref } from 'vue';
-import { logedUser, setIsLoged } from "../assets/variaveis"
-
+import { logedUser,showHeader } from "../assets/variaveis"
+import { EyeIcon, EyeSlashIcon } from '@heroicons/vue/24/outline';
+import router from '../router';
+showHeader.value = false
 
 const user = reactive({
-  nome: "",
-  email: "",
-  cnpj: "",
-  telefone: "",
-  senha: ""
+  nome: "Farma2 Teste",
+  email: "Farma2@rec.com",
+  telefone: "12345",
+  senha: "123"
 });
+
+let showPassword = ref(false);
+
 
 function resetInputs() {
   user.nome = ""
@@ -24,19 +28,20 @@ async function formSubmit(user) {
   let formData = new FormData();
   formData.append("name", user.nome);
   formData.append("email", user.email);
-  formData.append("cnpj", user.cnpj);
   formData.append("phone", user.telefone);
   formData.append("password", user.senha);
-
+  
   let response = await fetch('http://localhost:8005/createUser.php', {
     method: 'POST',
     body: formData
   })
-  .then((res)=>{
-    if(res.status == 200){
-      alert("conta criada")
-    }else{
-      alert("erro de email cadastrado")
+  .then(async res =>{
+    let response = await res.json()
+    if(response.success){
+      router.push('/login')
+    }
+    else{
+      alert("erro:" + response.message)
     }
   })
   .finally(()=>{
@@ -46,57 +51,51 @@ async function formSubmit(user) {
   
 }
 
-function showPass() {
-  if (senha.value.type === "password") {
-    senha.value.type = "text"
-    senhaConfirmar.value.type = "text"
-  } else {
-    senha.value.type = "password"
-    senhaConfirmar.value.type = "password"
-  }
+function togglePasswordVisibility() {
+  showPassword.value = !showPassword.value
 }
 
-const senha = ref([]);
-const senhaConfirmar = ref([]);
 
 </script>
 
 <template>
   <form v-if="logedUser.isLoged == false" @submit.prevent="formSubmit(user)">
-    <h1>Registrar Empresa</h1>
+    <img width="128" src="../assets/logo.svg" alt="Reciclai Logo">
+    <h1>Cadastre-se</h1>
     <div class="input-wrapper">
       <input required type="text" placeholder="" v-model="user.nome">
-      <label>Nome</label>
+      <label>Nome Completo</label>
     </div>
     <div class="input-wrapper">
       <input required type="email" placeholder="" v-model="user.email">
       <label>Email</label>
     </div>
-    <div class="input-wrapper">
-      <input required type="text" minlength="14" maxlength="14" placeholder="" v-model="user.cnpj">
-      <label>CNPJ</label>
-    </div>
+    
     <div class="input-wrapper">
       <input required type="text" placeholder="" v-model="user.telefone">
-      <label>Telefone</label>
+      <label>Telefone (apenas número)</label>
     </div>
     <div class="input-wrapper">
-      <input ref="senha" type="password" placeholder="" v-model="user.senha">
-      <label>Senha</label>
+      <input class="password-input" required :type="showPassword ? 'text' : 'password'" placeholder="" v-model="user.senha">
+      <label>Senha teste</label>
+      <div class="togglePass" @click="togglePasswordVisibility">
+        <EyeSlashIcon class="passIcon" v-if="showPassword" />
+        <EyeIcon v-else class="passIcon"/>
+      </div>
     </div>
     <div class="input-wrapper">
       <button class="register-btn">Registrar</button>
     </div>
+    <p><RouterLink to="/" >Voltar</RouterLink></p>
   </form>
 </template>
 
 <style scoped>
 form {
-  margin-top: 2rem;
-  height: 80%;
+  height: 100%;
   width: 100%;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   flex-direction: column;
   align-items: center;
   gap: 1.5rem;
@@ -151,10 +150,22 @@ input:focus~label {
   padding: 0 0.2em;
 }
 
-.invalidInput {
-  border: 1px solid red;
+.passIcon {
+  width: 2rem;
+  color: #ccc;
+}
+.togglePass {
+  position: absolute;
+  top: 50%;
+  right: 0.5rem;
+  transform: translateY(-45%);
+  cursor: pointer;
 }
 
+.password-input {
+  flex: 1;
+  padding-right: 2.5rem;
+}
 button.register-btn {
   cursor: pointer;
   width: 100%;
