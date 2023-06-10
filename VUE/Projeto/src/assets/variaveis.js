@@ -1,7 +1,8 @@
-import { reactive } from 'vue'
-import router from "../router/index"
+import { reactive,ref } from 'vue';
+import router from "../router/index";
 
 const localUserRaw = sessionStorage.getItem('user');
+export const showHeader = ref(true);
 
 export const logedUser = reactive({
   isLoged: false,
@@ -10,11 +11,11 @@ export const logedUser = reactive({
   type: "",
   email: "",
   phone: ""
-})
+});
 
 export function userLogout(){
-  sessionStorage.removeItem("user")
-  setIsLoged(false,"","","","")
+  sessionStorage.removeItem("user");
+  setIsLoged(false,"","","","");
 } 
 
 export function setIsLoged(userStatus, userID , userName, userType, userEmail, userPhone){
@@ -26,12 +27,14 @@ export function setIsLoged(userStatus, userID , userName, userType, userEmail, u
   logedUser.type = userType;
 
   if(logedUser.isLoged){
-    sessionStorage.setItem('user', JSON.stringify(logedUser))
-    router.push('/dashboard')
+    sessionStorage.setItem('user', JSON.stringify(logedUser));
+    router.push('/dashboard');
   }
 }
 
 if (localUserRaw) {
-  const { isLoged, ID, name, type, email, phone} = JSON.parse(localUserRaw)
-  setIsLoged(isLoged, ID, name, type, email, phone)
+  const { isLoged, ID, name, type, email, phone} = JSON.parse(localUserRaw);
+  setIsLoged(isLoged, ID, name, type, email, phone);
 }
+
+export const userLocation = ref(router.currentRoute.value.path);

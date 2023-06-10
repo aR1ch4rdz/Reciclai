@@ -28,6 +28,8 @@ div.content-wrapper {
 }
 div.content{
   width: 100%;
+  margin-left: 15%;
+  margin-top: 4em;
   min-height: 100%;
   display: grid;
   padding: 1em;

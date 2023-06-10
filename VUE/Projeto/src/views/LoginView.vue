@@ -1,6 +1,7 @@
 <script setup>
-import { reactive, onMounted } from "vue";
-import { logedUser, setIsLoged, userLogout } from "../assets/variaveis";
+import { logedUser, setIsLoged, userLogout, showHeader } from "../assets/variaveis";
+import { reactive } from "vue";
+showHeader.value = false
 
 function resetInputs() {
   login.email = ""
@@ -37,6 +38,7 @@ async function submitForm(user) {
 <template>
   <div class="container">
     <form v-if="logedUser.isLoged == false" @submit.prevent="submitForm(login)">
+      <img width="128" src="../assets/logo.svg" alt="reciclai logo">
       <h1>LOGIN</h1>
       <div class="input-wrapper">
         <input type="email" placeholder="" v-model="login.email">
@@ -47,8 +49,10 @@ async function submitForm(user) {
         <label>Senha</label>
       </div>
       <div class="input-wrapper">
-        <button class="register-btn">Fazer Login</button>
+        <button class="login-btn">Fazer Login</button>
       </div>
+      <p>Não possui uma empresa registrada? <RouterLink to="registrar">Clique aqui!</RouterLink></p>
+      <p><RouterLink to="/" >Voltar</RouterLink></p>
     </form>
   </div>
 </template>
@@ -56,14 +60,13 @@ async function submitForm(user) {
 <style scoped>
 div.container {
   width: 100%;
-  height: 80%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 form {
-  margin-top: 2rem;
   height: 100%;
   width: 50%;
   display: flex;
@@ -122,7 +125,7 @@ input:focus~label {
   padding: 0 0.2em;
 }
 
-button.register-btn {
+button.login-btn {
   cursor: pointer;
   width: 100%;
   padding: 0.7em;

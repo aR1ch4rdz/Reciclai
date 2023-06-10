@@ -21,7 +21,7 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 90%;
+    height: 100%;
   }
   div.content-wrapper > div{
     display: flex;

@@ -1,10 +1,12 @@
 <script setup>
 import { MapPinIcon, BuildingOfficeIcon } from '@heroicons/vue/24/outline';
-let props = defineProps({
+
+let props = defineProps({	
 	path: '',
 	card:'',
 	icon: ''
 })
+
 const totalEmpresa = await fetch(`http://localhost:8005/${props.path}`)
 const total = await totalEmpresa.json()
 </script>
