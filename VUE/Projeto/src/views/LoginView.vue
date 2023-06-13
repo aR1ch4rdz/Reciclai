@@ -89,7 +89,7 @@ div.input-wrapper {
 
 input {
   border: solid 1.5px #ccc;
-  border-radius: 1rem;
+  border-radius: 0.7rem;
   background: none;
   padding: 1rem;
   font-size: 1rem;
@@ -130,7 +130,7 @@ button.login-btn {
   width: 100%;
   padding: 0.7em;
   border: none;
-  border-radius: 1em;
+  border-radius: 0.7em;
   background: var(--green);
   color: var(--white);
   font-weight: bold;
