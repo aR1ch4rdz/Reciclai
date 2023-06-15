@@ -1,12 +1,7 @@
 <script setup>
-  import { logedUser, userLocation, showHeader } from '../assets/variaveis';
-  import { ref, onBeforeMount } from 'vue';
-  
-  onBeforeMount(() => {
-    if(userLocation.value === '/register' || userLocation.value === '/login'){
-      showHeader.value = false
-    }
-  });
+  import { logedUser, showHeader, userLogout } from '../assets/variaveis';
+  import { Bars3Icon, XMarkIcon} from '@heroicons/vue/24/outline'
+  import { onMounted, ref } from 'vue';
 
 </script>
 
@@ -19,8 +14,8 @@
         <RouterLink v-if="logedUser.type == 'ADMIN'" class="nav-item" to="/dashboard">Visão Geral</RouterLink>
         <RouterLink v-if="logedUser.type != 'ADMIN'" class="nav-item" to="/sobre">Sobre</RouterLink>
         <RouterLink v-if="logedUser.isLoged == false" class="nav-item" to="/login">Login</RouterLink>
-        <RouterLink v-if="logedUser.isLoged" class="nav-item" to="/userpage">{{ logedUser.name }}</RouterLink>
-        <RouterLink v-if="logedUser.isLoged == true" class="nav-item" to="/login">LOGOUT</RouterLink>
+        <RouterLink v-if="logedUser.isLoged == true && logedUser.type == 'PADRAO'" class="nav-item" to="/mypage">Cadastrar Empresa</RouterLink>
+        <!-- <span @click="userLogout()">Logout</span> -->
       </nav>
     </div>
   </header>

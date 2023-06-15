@@ -9,7 +9,7 @@ $name = $_POST['name'] ?? $_GET['name'];
 $email = $_POST['email'] ?? $_GET['email'];
 $phone = $_POST['phone'] ?? $_GET['phone'];
 $password = $_POST['password'] ?? $_GET['password'];
-$type = "EMPRESA";
+$type = "PADRAO";
 
 try {
     // Preparando consulta.

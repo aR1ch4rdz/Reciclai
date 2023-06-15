@@ -4,12 +4,7 @@ import Empresa from "../components/Empresa.vue"
 
 <template>
   <div class="container">
-    <Suspense>
-      <Empresa></Empresa>
-      <template #fallback>
-        Carregando...
-      </template>
-    </Suspense>
+  
   </div>
 </template>
 

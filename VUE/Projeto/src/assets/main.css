@@ -1,9 +1,10 @@
 @import './base.css';
 
 #app {
- width: 100vw;
- height: 100vh;
- min-height: 100vh;
- min-height: 100dvh;
- background-color: var(--white);
+  width: 100vw;
+  height: 90vh;
+  min-height: 90vh;
+  min-height: 90dvh;
+  background-color: var(--white);
+  margin-top: 10vh;
 }

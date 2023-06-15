@@ -16,6 +16,7 @@ export const logedUser = reactive({
 export function userLogout(){
   sessionStorage.removeItem("user");
   setIsLoged(false,"","","","");
+  router.push('/');
 } 
 
 export function setIsLoged(userStatus, userID , userName, userType, userEmail, userPhone){
