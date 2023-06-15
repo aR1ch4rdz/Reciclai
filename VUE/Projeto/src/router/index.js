@@ -51,11 +51,11 @@ const router = createRouter({
       }
     },
     {
-      path: '/userpage',
-      name: 'userpage',
+      path: '/mypage',
+      name: 'mypage',
       component: () => import('../views/UserPage.vue'),
       beforeEnter: (to, from, next) => {
-        if (to.path === '/userpage' && !logedUser.isLoged) {
+        if (to.path === '/mypage' && !logedUser.isLoged) {
           next('/login');
         } else {
           next();
@@ -75,6 +75,11 @@ const router = createRouter({
       path: '/dashboard/pontos',
       name: 'pontos',
       component: () => import('../views/PontosDeColetaView.vue'),
+    },
+    {
+      path: '/empresas',
+      name: 'empresas',
+      component: () => import('../views/EmpresasView.vue'),
     }
   ]
 });

@@ -35,7 +35,6 @@ function moveUser() {
 <style scoped>
 .content{
 	margin-left: 15%;
-	margin-top: 10vh;
 	display: flex;
 	width: 100%;
 	height: 100%;

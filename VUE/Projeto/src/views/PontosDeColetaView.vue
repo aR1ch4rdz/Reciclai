@@ -24,12 +24,11 @@ div.content-wrapper {
   display: flex;
   grid-template-columns: 0.5fr 0.5fr;
   width: 100%;
-  min-height: 90%;
+  min-height: 100%;
 }
 div.content{
   width: 100%;
   margin-left: 15%;
-  margin-top: 4em;
   min-height: 100%;
   display: grid;
   padding: 1em;

@@ -8,8 +8,6 @@ function resetInputs() {
   login.senha = ""
 }
 
-userLogout()
-
 const login = reactive({
   email: "",
   senha: ""
