@@ -6,8 +6,8 @@ import router from '../router';
 showHeader.value = false
 
 const user = reactive({
-  nome: "Farma2 Teste",
-  email: "Farma2@rec.com",
+  nome: "Anthony",
+  email: "anthony@gmail.com",
   telefone: "12345",
   senha: "123"
 });

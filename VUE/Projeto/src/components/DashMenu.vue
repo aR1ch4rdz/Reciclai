@@ -13,7 +13,8 @@ function newPath(path) {
 <template>
   <div class="side-bar-wrapper">
     <p @click="newPath('/dashboard')" :class="[option == '/dashboard' ? 'selected' : '']">Dashboard</p>
-    <p @click="newPath('/dashboard/pontos')" :class="[option == '/dashboard/pontos' ? 'selected' : '']">Pendencias</p>
+    <p @click="newPath('/dashboard/empresa')" :class="[option == '/dashboard/pontos' ? 'selected' : '']">Empresas em analise</p>
+    <p @click="newPath('/dashboard/pontos')" :class="[option == '/dashboard/pontos' ? 'selected' : '']">Pontos em analise</p>
     <p>Dashboard</p>
     <p>Dashboard</p>
     <p @click="userLogout()">Logout</p>

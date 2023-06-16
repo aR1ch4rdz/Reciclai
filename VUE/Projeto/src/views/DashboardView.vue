@@ -8,13 +8,11 @@ import Graph from "../components/Graph.vue";
 function moveUser() {
 	router.push('/dashboard/pontos')
 }
-
-
 </script>
 
 <template>
 	<div class="content-wrapper">
-		<DashMenu></DashMenu>
+		<DashMenu />
 		<div class="content">
 			<Suspense>
 				<div class="dashinfo-wrapper">

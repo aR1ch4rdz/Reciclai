@@ -75,6 +75,27 @@ const router = createRouter({
       path: '/dashboard/pontos',
       name: 'pontos',
       component: () => import('../views/PontosDeColetaView.vue'),
+      beforeEnter: (to, from, next) => {
+        if (to.path === '/dashboard/pontos' && logedUser.type != "ADMIN") {
+          next('/');
+        } else {
+          next();
+          showHeader.value = true
+        }
+      }
+    },
+    {
+      path: '/dashboard/empresa',
+      name: 'empresa',
+      component: () => import('../views/EmpresasRevisaoView.vue'),
+      beforeEnter: (to, from, next) => {
+        if (to.path === '/dashboard/empresa' && logedUser.type != "ADMIN") {
+          next('/');
+        } else {
+          next();
+          showHeader.value = true
+        }
+      }
     },
     {
       path: '/empresas',
