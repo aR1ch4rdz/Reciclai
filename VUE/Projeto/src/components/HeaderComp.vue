@@ -10,6 +10,7 @@
         <RouterLink v-if="logedUser.type != 'ADMIN'" class="nav-item" to="/">Home</RouterLink>
         <RouterLink v-if="logedUser.type == 'ADMIN'" class="nav-item" to="/dashboard">Visão Geral</RouterLink>
         <RouterLink v-if="logedUser.type != 'ADMIN'" class="nav-item" to="/sobre">Sobre</RouterLink>
+        <RouterLink v-if="logedUser.type == 'EMPRESA'" class="nav-item" to="/CreateCollectPoint">Criar Ponto</RouterLink>
         <RouterLink v-if="logedUser.isLoged == false" class="nav-item" to="/login">Login</RouterLink>
         <RouterLink v-if="logedUser.isLoged" class="nav-item" to="/userpage">{{ logedUser.name }}</RouterLink>
         <RouterLink v-if="logedUser.isLoged == true" class="nav-item" to="/login">LOGOUT</RouterLink>

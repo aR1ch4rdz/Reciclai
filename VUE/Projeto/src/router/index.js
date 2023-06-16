@@ -66,7 +66,19 @@ const router = createRouter({
       path: '/dashboard/pontos',
       name: 'pontos',
       component: () => import('../views/PontosDeColetaView.vue'),
-    }
+    },
+    {
+      path: '/CreateCollectPoint',
+      name: 'CriarPonto',
+      component: () => import('../views/CreateCollectPoint.vue'),
+      beforeEnter: () => (to, from, next) => {
+        if (to.path === '/CreateCollectPoint' && !logedUser.isLoged) {
+          next('/CreateCollectPoint');
+        }else{
+          next();
+        }
+      }
+    },
   ]
 });
   

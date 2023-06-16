@@ -22,7 +22,7 @@ import DashMenu from '../components/DashMenu.vue';
 div.content-wrapper {
   position: relative;
   display: flex;
-  grid-template-columns: 0.5fr 0.5fr;
+  grid-template-columns: 5fr 0.5fr;
   width: 100%;
   min-height: 90%;
 }
@@ -32,7 +32,7 @@ div.content{
   display: grid;
   padding: 1em;
   gap: 1em;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 9fr 9fr;
   background-color: #ededed;
 }
 </style>

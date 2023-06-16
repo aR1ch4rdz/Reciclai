@@ -1,5 +1,6 @@
 <script setup>
 import Empresa from "../components/Empresa.vue"
+console.log()
 </script>
 
 <template>
