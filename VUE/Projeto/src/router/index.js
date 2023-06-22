@@ -67,8 +67,12 @@ const router = createRouter({
       name: 'login',
       component: () => import('../views/LoginView.vue'),
       beforeEnter: (to, from, next) => {
-        next();
-        showHeader.value = false;
+        if (to.path === '/login' && logedUser.isLoged) {
+          next('/');
+        } else {
+          next();
+          showHeader.value = false;
+        }
       }
     },
     {
@@ -90,6 +94,19 @@ const router = createRouter({
       component: () => import('../views/EmpresasRevisaoView.vue'),
       beforeEnter: (to, from, next) => {
         if (to.path === '/dashboard/empresa' && logedUser.type != "ADMIN") {
+          next('/');
+        } else {
+          next();
+          showHeader.value = true
+        }
+      }
+    },
+    {
+      path: '/dashboard/revisar_ponto/:pointID/:companyID',
+      name: 'revisar_ponto',
+      component: () => import('../views/RevisarPontoView.vue'),
+      beforeEnter: (to, from, next) => {
+        if (to.path === '/dashboard/revisar_ponto/:pontoID/:empresaID' && logedUser.type != "ADMIN") {
           next('/');
         } else {
           next();

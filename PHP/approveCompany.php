@@ -32,7 +32,7 @@ try {
   } else {
     $response = array('success' => false, 'message' => 'Erro ao Aprovar Empresa.');
     echo json_encode($response);
-    }
+  }
 } catch (PDOException $e) {
   $response = array('success' => false, 'message' => 'Erro ao Aprovar Empresa: ' . $e->getMessage());
   echo json_encode($response);

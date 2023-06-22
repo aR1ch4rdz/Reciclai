@@ -8,9 +8,25 @@ function resetInputs() {
   login.senha = ""
 }
 
+async function getCompanyId(userData) {
+  if (userData.USR_TYPE === "EMPRESA") {
+
+    fetch(`http://localhost:8005/getCompany.php?user=${userData.USR_ID}`, {
+      method: "GET",
+    }).then(async (res) => {
+      let empresa = await res.json();
+      setIsLoged(true, userData.USR_ID, userData.USR_NAME, userData.USR_TYPE, userData.USR_EMAIL, userData.USR_PHONE, empresa[0].EMP_ID)
+      resetInputs()
+    })
+  } else {
+    setIsLoged(true, userData.USR_ID, userData.USR_NAME, userData.USR_TYPE, userData.USR_EMAIL, userData.USR_PHONE)
+    resetInputs()
+  }
+}
+
 const login = reactive({
-  email: "",
-  senha: ""
+  email: "anthony@gmail.com",
+  senha: "123"
 });
 
 async function submitForm(user) {
@@ -19,17 +35,17 @@ async function submitForm(user) {
   formData.append("email", user.email);
   formData.append("password", user.senha);
 
-  let response = await fetch('http://localhost:8005/actionLogin.php', {
+  await fetch('http://localhost:8005/actionLogin.php', {
     method: 'POST',
     body: formData
   }).then(async (res) => {
     if (res.status == 200) {
       data = await res.json()
-      setIsLoged(true, data[0].USR_ID, data[0].USR_NAME, data[0].USR_TYPE, data[0].USR_EMAIL, data[0].USR_PHONE)
     }
-  }).finally(() => {
-    resetInputs()
+  }).finally(async () => {
+    getCompanyId(data[0])
   })
+
 }
 </script>
 
@@ -49,8 +65,11 @@ async function submitForm(user) {
       <div class="input-wrapper">
         <button class="login-btn">Fazer Login</button>
       </div>
-      <p>Não possui uma empresa registrada? <RouterLink to="registrar">Clique aqui!</RouterLink></p>
-      <p><RouterLink to="/" >Voltar</RouterLink></p>
+      <p>Não possui uma empresa registrada? <RouterLink to="registrar">Clique aqui!</RouterLink>
+      </p>
+      <p>
+        <RouterLink to="/">Voltar</RouterLink>
+      </p>
     </form>
   </div>
 </template>

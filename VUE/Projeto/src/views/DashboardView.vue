@@ -18,7 +18,7 @@ function moveUser() {
 				<div class="dashinfo-wrapper">
 					<div class="dash-row">
 						<TotalCard icon="build" path="getEmpTotal.php" card="Total de empresa" />
-						<TotalCard @click="moveUser()" icon="map" path="getPDCTotal.php" card="Total de Pontos" />
+						<TotalCard @click="moveUser()" icon="map" path="getPDCTotal.php" card="Pontos Pendentes" />
 						<TotalCard icon="map" path="getEmpTotal.php" card="Pontos pendentes" />
 					</div>
 					<div class="graph-wrapper">
@@ -31,6 +31,11 @@ function moveUser() {
 </template>
 
 <style scoped>
+div.content-wrapper {
+	display: flex;
+	width: 100%;
+	height: 100%;
+}
 .content{
 	margin-left: 15%;
 	display: flex;
@@ -38,11 +43,7 @@ function moveUser() {
 	height: 100%;
 	overflow-y: scroll;
 }
-.content-wrapper {
-	display: flex;
-	width: 100%;
-	height: 100%;
-}
+
 div.graph-wrapper{
 	text-align: center;
 	box-shadow: hsla(0, 0%, 0%, 0.184) 0px 0px 8px;

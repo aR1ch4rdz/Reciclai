@@ -1,6 +1,6 @@
 <script setup>
 import DashMenu from "../components/DashMenu.vue";
-import Empresa from "../components/Empresa.vue"
+import Empresa from "../components/Empresa.vue";
 </script>
 
 <template>
