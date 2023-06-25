@@ -2,10 +2,10 @@
 import { logedUser } from '../assets/variaveis.js';
 import { reactive, ref } from 'vue';
 import CadastroCard from '../components/CadastroCard.vue';
-
 import UserMenu from '../components/UserMenu.vue';
 import BotaoAdicionar from '../components/BotaoAdicionar.vue';
 import InputForm from '../components/formulario/InputForm.vue';
+
 
 const pontoData = reactive({
   cep: "",
@@ -52,7 +52,8 @@ function teste() {
   <div class="content-wrapper">
     <UserMenu />
     <CadastroCard v-if="logedUser.type == 'PADRAO'" />
-    <h1>Você não possui pontos cadastrados</h1>
+
+    <!-- <h1>Você não possui pontos cadastrados</h1>
     <h2>Adicione novos pontos de coleta </h2>
 
     <form @submit.prevent="handleForm(pontoData)">
@@ -61,16 +62,20 @@ function teste() {
       </div>
 
       <div class="input-wrapper">
-        <InputForm v-model="pontoData.lat" label="Latitude" />
+        <InputForm type="number" v-model="pontoData.lat" label="Latitude" />
       </div>
 
       <div class="input-wrapper">
-        <InputForm v-model="pontoData.lon" label="Longitude" />
+        <InputForm type="number" v-model="pontoData.lon" label="Longitude" />
       </div>
       <button class="btn">
         <BotaoAdicionar />
       </button>
-    </form>
+    </form> -->
+    <div class="ponto-wrapper">
+
+    </div>
+
   </div>
 </template>
 
@@ -98,16 +103,7 @@ div.input-wrapper {
   width: 30%;
 }
 
-/* 
-div.add-content {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content:center;
-} 
-*/
+
 form {
   height: 100%;
   width: 50%;

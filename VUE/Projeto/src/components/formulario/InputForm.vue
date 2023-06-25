@@ -4,6 +4,7 @@ import { onMounted, ref } from 'vue';
 defineProps({
   modelValue: String,
   label: String,
+  type: String
 });
 defineEmits(['update:modelValue']);
 
@@ -12,7 +13,7 @@ const input = ref(null)
 </script>
 
 <template>
-  <input placeholder="" :value="modelValue" @input="$emit('update:modelValue', $event.target.value)" ref="input">
+  <input :type="type" placeholder="" :value="modelValue" @input="$emit('update:modelValue', $event.target.value)" ref="input">
   <label>{{ label }}</label>
 </template>
 <style scoped>

@@ -14,6 +14,8 @@ export const logedUser = reactive({
   empresaID: ""
 });
 
+export const haveCompany = ref(false); 
+
 export function userLogout(){
   sessionStorage.removeItem("user");
   setIsLoged(false,"","","","","","");
