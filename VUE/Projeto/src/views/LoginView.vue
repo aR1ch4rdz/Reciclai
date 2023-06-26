@@ -1,7 +1,9 @@
 <script setup>
-import { logedUser, setIsLoged, userLogout, showHeader } from "../assets/variaveis";
-import { reactive } from "vue";
-showHeader.value = false
+import { logedUser, setIsLoged, showHeader } from "../assets/variaveis";
+import { reactive, ref } from "vue";
+
+showHeader.value = false;
+const showError = ref(false);
 
 function resetInputs() {
   login.email = ""
@@ -15,12 +17,12 @@ async function getCompanyId(userData) {
       method: "GET",
     }).then(async (res) => {
       let empresa = await res.json();
-      setIsLoged(true, userData.USR_ID, userData.USR_NAME, userData.USR_TYPE, userData.USR_EMAIL, userData.USR_PHONE, empresa[0].EMP_ID)
-      resetInputs()
-    })
+      setIsLoged(true, userData.USR_ID, userData.USR_NAME, userData.USR_TYPE, userData.USR_EMAIL, userData.USR_PHONE, empresa[0].EMP_ID);
+      resetInputs();
+    });
   } else {
-    setIsLoged(true, userData.USR_ID, userData.USR_NAME, userData.USR_TYPE, userData.USR_EMAIL, userData.USR_PHONE)
-    resetInputs()
+    setIsLoged(true, userData.USR_ID, userData.USR_NAME, userData.USR_TYPE, userData.USR_EMAIL, userData.USR_PHONE);
+    resetInputs();
   }
 }
 
@@ -29,23 +31,24 @@ const login = reactive({
   senha: "123"
 });
 
-async function submitForm(user) {
-  let data = null;
+function submitForm(user) {
   let formData = new FormData();
   formData.append("email", user.email);
   formData.append("password", user.senha);
 
-  await fetch('http://localhost:8005/actionLogin.php', {
+  fetch('http://localhost:8005/actionLogin.php', {
     method: 'POST',
     body: formData
-  }).then(async (res) => {
-    if (res.status == 200) {
-      data = await res.json()
+  }).then(res => res.json()).then((resData) => {
+    console.log(resData)
+    if (resData.success) {
+      // alert(resData.message)
+      getCompanyId(resData.data[0])
+    } else {
+      showError.value = true
+      resetInputs()
     }
-  }).finally(async () => {
-    getCompanyId(data[0])
   })
-
 }
 </script>
 
@@ -54,6 +57,7 @@ async function submitForm(user) {
     <form v-if="logedUser.isLoged == false" @submit.prevent="submitForm(login)">
       <img width="128" src="../assets/logo.svg" alt="reciclai logo">
       <h1>LOGIN</h1>
+      <p v-if="showError" style="color:red">Usuário não encontrado!</p>
       <div class="input-wrapper">
         <input type="email" placeholder="" v-model="login.email">
         <label>Email</label>
@@ -65,7 +69,7 @@ async function submitForm(user) {
       <div class="input-wrapper">
         <button class="login-btn">Fazer Login</button>
       </div>
-      <p>Não possui uma empresa registrada? <RouterLink to="registrar">Clique aqui!</RouterLink>
+      <p>Não possui uma conta registrada? <RouterLink to="registrar">Clique aqui!</RouterLink>
       </p>
       <p>
         <RouterLink to="/">Voltar</RouterLink>
