@@ -63,16 +63,14 @@ function handleForm(pontoID){
               <MapPinIcon style="height: 100%;" />
             </span>
           </div>
-          <label>CEP</label>
-          <input :value="currentPoint.PDC_CEP" type="text" disabled>
           <label>LATITUDE</label>
           <input :value="currentPoint.EMP_LATITUDE" type="text" disabled>
           <label>LONGITUDE</label>
           <input :value="currentPoint.EMP_LONGITUDE" type="text" disabled>
+          <a target="_blank" v-bind:href="'https://www.google.com.br/maps/place/' + currentPoint.EMP_LATITUDE + ',' + currentPoint.EMP_LONGITUDE">Ver no maps</a>
           <button class="apro">Aprovar Ponto</button>
           <div @click="router.push('/dashboard/pontos')" class="back-btn">Voltar</div>
         </form>
-
       </div>
       <!-- PDC_ID, EMP_NOME, EMP_CNPJ, EMP_LATITUDE, EMP_LONGITUDE, PDC_STATUS -->
       <!-- <h1>Empresa solicitando aprovação de ponto: {{ currentPoint.EMP_NOME }}</h1> -->

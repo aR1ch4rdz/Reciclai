@@ -31,7 +31,7 @@ async function handleForm(data) {
   formData.append('cep', data.cep)
   formData.append('status', data.status)
   formData.append('usrID', data.usrID)
-
+  console.log(data);
   await fetch('http://localhost:8005/createEmp.php', {
     method: 'POST',
     body: formData
@@ -115,7 +115,6 @@ div.content {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 15%;
   width: 100%;
   height: 100%;
 }

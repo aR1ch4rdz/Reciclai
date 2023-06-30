@@ -6,7 +6,6 @@ header("Access-Control-Allow-Origin: *");
 //error_reporting(E_ALL);
 
 $status = $_POST['status'] ?? $_GET['status'];
-$cep = $_POST['cep'] ?? $_GET['cep'];
 $empID = $_POST['empID'] ?? $_GET['empID'] ;
 $empLat = $_POST['empLat'] ?? $_GET['empLat'];
 $empLon = $_POST['empLon'] ?? $_POST['empLon'];
@@ -14,11 +13,10 @@ $empLon = $_POST['empLon'] ?? $_POST['empLon'];
 
 try {
     // Preparando consulta.
-    $stmt = $conn->prepare("INSERT INTO EMP_PONTO_DE_COLETA (PDC_STATUS, PDC_CEP, PDC_EMP_ID, EMP_LATITUDE, EMP_LONGITUDE) 
-                           VALUES (:pdcStatus, :pdcCep, :empID, :empLat, :empLon)");
+    $stmt = $conn->prepare("INSERT INTO EMP_PONTO_DE_COLETA (PDC_STATUS, PDC_EMP_ID, EMP_LATITUDE, EMP_LONGITUDE) 
+                           VALUES (:pdcStatus, :empID, :empLat, :empLon)");
 
     $stmt->bindParam(':pdcStatus', $status);
-    $stmt->bindParam(':pdcCep', $cep);
     $stmt->bindParam(':empID', $empID);
     $stmt->bindParam(':empLat', $empLat);
     $stmt->bindParam(':empLon', $empLon);
@@ -36,10 +34,12 @@ try {
     } else {
         // Falha ao criar a conta
         $response = array('success' => false, 'message' => 'Erro ao criar ponto.');
+        http_response_code(400);
         echo json_encode($response);
     }
 } catch(PDOException $e) {
     // Erro ao executar a consulta
     $response = array('success' => false, 'message' => 'Erro ao criar ponto: ' . $e->getMessage());
+    http_response_code(400);
     echo json_encode($response);
 }
