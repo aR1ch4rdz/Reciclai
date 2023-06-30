@@ -35,4 +35,4 @@ Após se certificar de que todos os pré-requisitos estão instalados adequadame
 3. Abrir outro terminal na pasta ***VUE/Projeto*** e executar o comando `npm install` e `npm run dev`;
 4. Acessar o link que será exibido no terminal (normalmente: `localhost:5173`)
 
-Além disso é necessário criar o esquema SQL que estamos utilizando para que a aplicação funcione devidamente. Basta copiar todo os comandos que estão localizados no arquivo de texto em: `PHP\mysql.txt`, abrir o *Workbench*, colar e executar.
+Além disso é necessário criar o esquema SQL que estamos utilizando para que a aplicação funcione devidamente. Basta copiar todos os comandos que estão localizados no arquivo de texto em: `PHP\mysql.txt`, abrir o *Workbench*, colar e executar.
