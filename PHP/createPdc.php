@@ -36,10 +36,12 @@ try {
     } else {
         // Falha ao criar a conta
         $response = array('success' => false, 'message' => 'Erro ao criar ponto.');
+        http_response_code(400);
         echo json_encode($response);
     }
 } catch(PDOException $e) {
     // Erro ao executar a consulta
     $response = array('success' => false, 'message' => 'Erro ao criar ponto: ' . $e->getMessage());
+    http_response_code(400);
     echo json_encode($response);
 }

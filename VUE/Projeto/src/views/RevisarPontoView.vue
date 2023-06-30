@@ -69,6 +69,7 @@ function handleForm(pontoID){
           <input :value="currentPoint.EMP_LATITUDE" type="text" disabled>
           <label>LONGITUDE</label>
           <input :value="currentPoint.EMP_LONGITUDE" type="text" disabled>
+          <a v-bind:href="'https://www.google.com.br/maps/place/' + currentPoint.EMP_LATITUDE + ',' + currentPoint.EMP_LONGITUDE">asd</a>
           <button class="apro">Aprovar Ponto</button>
           <div @click="router.push('/dashboard/pontos')" class="back-btn">Voltar</div>
         </form>

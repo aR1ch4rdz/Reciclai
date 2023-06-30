@@ -1,6 +1,6 @@
 <?php
 $user = "root";
-$password = "rootroot";
+$password = "batatamysql";
 
 try{
     $conn = new PDO('mysql:host=localhost:3306;dbname=recicla_teste', $user, $password);
