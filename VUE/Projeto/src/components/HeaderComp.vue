@@ -1,8 +1,6 @@
 <script setup>
   import { logedUser, showHeader, userLogout } from '../assets/variaveis';
-  import { Bars3Icon, XMarkIcon} from '@heroicons/vue/24/outline'
   import { onMounted, ref } from 'vue';
-
 </script>
 
 <template>
@@ -14,8 +12,7 @@
         <RouterLink v-if="logedUser.type == 'ADMIN'" class="nav-item" to="/dashboard">Visão Geral</RouterLink>
         <RouterLink v-if="logedUser.type != 'ADMIN'" class="nav-item" to="/sobre">Sobre</RouterLink>
         <RouterLink v-if="logedUser.isLoged == false" class="nav-item" to="/login">Login</RouterLink>
-        <RouterLink v-if="logedUser.isLoged == true && logedUser.type == 'PADRAO'" class="nav-item" to="/mypage">Cadastrar Empresa</RouterLink>
-        <!-- <span @click="userLogout()">Logout</span> -->
+        <RouterLink v-if="logedUser.isLoged == true && logedUser.type != 'ADMIN'" class="nav-item" to="/mypage">Minha conta</RouterLink>
       </nav>
     </div>
   </header>

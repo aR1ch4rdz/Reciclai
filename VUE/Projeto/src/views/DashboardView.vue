@@ -8,20 +8,18 @@ import Graph from "../components/Graph.vue";
 function moveUser() {
 	router.push('/dashboard/pontos')
 }
-
-
 </script>
 
 <template>
 	<div class="content-wrapper">
-		<DashMenu></DashMenu>
+		<DashMenu />
 		<div class="content">
 			<Suspense>
 				<div class="dashinfo-wrapper">
 					<div class="dash-row">
 						<TotalCard icon="build" path="getEmpTotal.php" card="Total de empresa" />
-						<TotalCard @click="moveUser()" icon="map" path="getPDCTotal.php" card="Total de Pontos" />
-						<TotalCard icon="map" path="getEmpTotal.php" card="Pontos pendentes" />
+						<TotalCard icon="map" path="getPDCTotal.php" card="Total de Pontos" />
+						<TotalCard icon="map" path="getEmpTotal.php" card="Pontos pendentes" @click="moveUser()" />
 					</div>
 					<div class="graph-wrapper">
 						<Graph />
@@ -33,6 +31,11 @@ function moveUser() {
 </template>
 
 <style scoped>
+div.content-wrapper {
+	display: flex;
+	width: 100%;
+	height: 100%;
+}
 .content{
 	margin-left: 15%;
 	display: flex;
@@ -40,11 +43,7 @@ function moveUser() {
 	height: 100%;
 	overflow-y: scroll;
 }
-.content-wrapper {
-	display: flex;
-	width: 100%;
-	height: 100%;
-}
+
 div.graph-wrapper{
 	text-align: center;
 	box-shadow: hsla(0, 0%, 0%, 0.184) 0px 0px 8px;

@@ -1,10 +1,11 @@
 <script setup>
-import Empresa from "../components/Empresa.vue"
+import DashMenu from "../components/DashMenu.vue";
+import Empresa from "../components/Empresa.vue";
 </script>
 
 <template>
   <div class="container">
-  
+   <DashMenu />
   </div>
 </template>
 

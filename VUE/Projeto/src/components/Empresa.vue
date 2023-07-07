@@ -3,6 +3,7 @@
 let res = await fetch("http://localhost:8005/getUnderReview.php")
 let empresas = await res.json()
 
+
 </script>
 
 <template>

@@ -6,10 +6,10 @@ import router from '../router';
 showHeader.value = false
 
 const user = reactive({
-  nome: "Farma2 Teste",
-  email: "Farma2@rec.com",
-  telefone: "12345",
-  senha: "123"
+  nome: "",
+  email: "",
+  telefone: "",
+  senha: ""
 });
 
 let showPassword = ref(false);

@@ -1,22 +1,20 @@
 <script setup>
 import { ref } from 'vue';
 import router from '../router/index';
-import { userLogout } from '../assets/variaveis.js';
-let option = ref(router.currentRoute.value.path)
+import { userLogout, logedUser } from '../assets/variaveis.js';
+import { ArrowLeftOnRectangleIcon } from '@heroicons/vue/24/outline';
+let menuOption = ref("/cadastro");
 
-function newPath(path) {
-  option = path
-  router.push(path)
+function newPath(selection) {
+  menuOption.value = selection;
 }
 </script>
 
 <template>
   <div class="side-bar-wrapper">
-    <p @click="newPath('/dashboard')" :class="[option == '/dashboard' ? 'selected' : '']">Dashboard</p>
-    <p @click="newPath('/dashboard/empresa')" :class="[option == '/dashboard/empresa' ? 'selected' : '']">Empresas em analise</p>
-    <p @click="newPath('/dashboard/pontos')" :class="[option == '/dashboard/pontos' ? 'selected' : '']">Pontos em analise</p>
-    <p>Dashboard</p>
-    <p>Dashboard</p>
+    <p v-if="logedUser.type != 'EMPRESA'" @click="newPath('/mypage')" :class="[menuOption == '/cadastro' ? 'selected' : '']">Cadastrar Empresa</p>
+    <p v-if="logedUser.type == 'EMPRESA'" @click="newPath('/MeusPontos')" :class="[menuOption == '/MeusPontos' ? 'selected' : '']">Meus pontos</p>
+    <p>Configurações</p>
     <p @click="userLogout()">Sair</p>
   </div>
 </template>
