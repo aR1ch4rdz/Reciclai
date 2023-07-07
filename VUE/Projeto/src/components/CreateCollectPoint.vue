@@ -1,113 +1,81 @@
 <script>
  import { Loader } from '@googlemaps/js-api-loader';
  import { ref } from 'vue';
+ 
+ let igarassu = { lat: -7.834, lng: -34.906 };
 
- let res = await fetch("http://localhost:8005/depuracao.php");
- let latLngPonto = await res.json();
-
- const igarassu = { lat: -7.834, lng: -34.906 };
  export const latLngTeste = ref({lat:null, lng:null});
 
  export default {
     name: 'APImaps',
+
     data(){
         return{
           map:null,
           takePlace:{lat:null, lng:null},
-          place:[],
         }
     },
 
     mounted(){
       const loader = new Loader({
-          apiKey: 'API-KEY',
+          apiKey: 'AIzaSyBzrFQCiYK1UTkLVY#IaW76YVZXmF1S1Ai0',
           version: 'weekly',
           libraries: ['places'],
       });
 
       loader.load().then(()=> {
+        this.map = new google.maps.Map(this.$refs.map, {
+        center: igarassu ,
+        zoom: 10,
+      });
           this.initMap();
       })
   },
 
     methods: {
       initMap() {
-        this.map = new google.maps.Map(this.$refs.map, {
-        center: igarassu ,
-        zoom: 10,
-      });
+
      this.map.controls[google.maps.ControlPosition.TOP_CENTER].push(this.$refs.searchInput);
      this.map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(this.$refs.send);
+
      const autocomplete = new google.maps.places.Autocomplete(this.$refs.searchInput);
   
-     const markers = new google.maps.Marker({
-        map: this.map
-      });
-
       autocomplete.addListener("place_changed", () => {
         const places = autocomplete.getPlace();
         this.takePlace.lat = String(places.geometry.location.lat());
         this.takePlace.lng = String(places.geometry.location.lng());
-        latLngTeste.value = this.takePlace
+        latLngTeste.value = this.takePlace;
         markers.setPosition(places.geometry.location);
+      });
 
-  });
-
+      const markers = new google.maps.Marker({
+        map: this.map
+      });
+      
     this.map.addListener("click", (e)=>{
         this.takePlace.lat = String(e.latLng.lat());
         this.takePlace.lng = String(e.latLng.lng());
         latLngTeste.value = this.takePlace;
         markers.setPosition(e.latLng);
-    })
+    });
     
-    // latLngPonto.forEach(position => {
-    //   const pin = new google.maps.Marker({
-    //     position: {lat: parseFloat(position.EMP_LATITUDE), lng: parseFloat(position.EMP_LONGITUDE)},
-    //     map: this.map
-    //   });
-
-    //   const geocoding = new google.maps.Geocoder().geocode({
-    //     location: {lat: parseFloat(position.EMP_LATITUDE), lng: parseFloat(position.EMP_LONGITUDE)}
-    //   });
-    //   geocoding.then((e)=>{
-    //     this.place.push(e.results[0].formatted_address)
-    //     // console.log(e.results[0].formatted_address);
-    //   })
-    // });
 
     },
-//       async make(){
-//         let formData = new FormData();
+
+
+    },  
+
       
-//         formData.append("lat",this.takePlace.lat);
-//         formData.append("lng",this.takePlace.lng);
-        
-//         let response = await fetch('http://localhost:8005/createPoint.php', {
-//         method: 'POST',
-//         body: formData
-//   })
-//   console.log("entrou aqui meu chapa (la ele)")
-//       }    
-  }
-}
+    }
+  
 </script>
 
 <template>
   <div id="container"> 
     <div ref="map" style="width:100%; height: 80vh; ">
       <input id="input" ref="searchInput" style="width: 30%; position: absolute;" type="text" >
+      <button style="position: absolute;">oi</button>
     </div>
-
-      <!-- <div id="listPoint">
-        <h2>Seus Pontos</h2>
-        <ul v-for="ponto in place">
-          <li>
-            {{ponto}} <br>
-            STATUS <br> 
-          </li>
-        </ul>
-      </div> -->
-
   </div>
 </template>
 
