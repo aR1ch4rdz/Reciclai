@@ -1,6 +1,7 @@
 <script setup>
 import { ref, reactive } from 'vue';
-import { logedUser } from '../assets/variaveis.js';
+import { logedUser } from '../assets/variaveis';
+import { getCompany } from '../assets/functions'
 
 const empresaData = reactive({
   nome: "",
@@ -8,7 +9,6 @@ const empresaData = reactive({
   cep: "",
   status: "EM ANALISE",
   usrID: logedUser.ID
-
 });
 
 const formRef = ref(null);
@@ -39,10 +39,12 @@ async function handleForm(data) {
   .then(async res => {
     let response = await res.json()
     if (response.success) {
-      alert("ponto criado")
+      alert("empresa criada");
+      getCompany(logedUser.ID)
     }
     else {
-      alert("erro:" + response.message)
+      alert("erro:" + response.message);
+
     }
   })
 
@@ -130,7 +132,7 @@ div.form-wrapper {
   width: 100%;
   height: 100%;
   backdrop-filter: blur(1px);
-  ;
+  
 }
 
 form {

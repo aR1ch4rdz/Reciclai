@@ -1,5 +1,6 @@
 <script setup>
 import { FaceFrownIcon } from '@heroicons/vue/24/outline';
+
 </script>
 
 <template>

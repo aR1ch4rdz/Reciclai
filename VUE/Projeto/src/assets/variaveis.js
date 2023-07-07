@@ -2,7 +2,11 @@ import { reactive,ref } from 'vue';
 import router from "../router/index";
 
 const localUserRaw = sessionStorage.getItem('user');
+
 export const showHeader = ref(true);
+export const myCompany = ref(false);
+export const haveCompany = ref(false);
+export const userPoint = ref([])
 
 export const logedUser = reactive({
   isLoged: false,
@@ -14,11 +18,12 @@ export const logedUser = reactive({
   empresaID: ""
 });
 
-export const haveCompany = ref(false); 
 
 export function userLogout(){
   sessionStorage.removeItem("user");
   setIsLoged(false,"","","","","","");
+  myCompany.value = false
+  userPoint.value = [];
   router.push('/');
 }
 

@@ -27,7 +27,7 @@ async function getCompanyId(userData) {
 }
 
 const login = reactive({
-  email: "anthony@gmail.com",
+  email: "lospollos@hermanos.com",
   senha: "123"
 });
 

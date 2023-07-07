@@ -1,6 +1,7 @@
 <script>
 import { Loader } from '@googlemaps/js-api-loader';
 import { ref } from 'vue';
+import { createNewCollectPoint } from '../assets/functions.js'
 
 let res = await fetch("http://localhost:8005/depuracao.php");
 let latLngPonto = await res.json();
@@ -63,6 +64,7 @@ export default {
     },
   }
 }
+
 </script>
 
 <template>
@@ -86,6 +88,7 @@ export default {
 }
 
 .mapa{
+  position: relative;
   width: 100%;
   height: 100%;
 }
