@@ -3,25 +3,25 @@ import Chart from 'chart.js/auto'
 import { onMounted } from 'vue';
 
 const data = [
-  { month: "Janeiro", count: getRandomNumber() },
-  { month: "Fevereiro", count: getRandomNumber() },
-  { month: "Março", count: getRandomNumber() },
-  { month: "Abril", count: getRandomNumber() },
-  { month: "Maio", count: getRandomNumber() },
-  { month: "Junho", count: getRandomNumber() },
-  { month: "Julho", count: getRandomNumber() },
-  { month: "Agosto", count: getRandomNumber() },
-  { month: "Setembro", count: getRandomNumber() },
-  { month: "Outubro", count: getRandomNumber() },
-  { month: "Novembro", count: getRandomNumber() },
-  { month: "Dezembro", count: getRandomNumber() }
+  { month: "Janeiro", count: 5 },
+  { month: "Fevereiro", count: 10 },
+  { month: "Março", count: 8 },
+  { month: "Abril", count: 20 },
+  { month: "Maio", count: 25 },
+  { month: "Junho", count: 20 },
+  { month: "Julho", count: 30 },
+  { month: "Agosto", count: 0 },
+  { month: "Setembro", count: 0 },
+  { month: "Outubro", count: 0 },
+  { month: "Novembro", count: 0 },
+  { month: "Dezembro", count: 0 }
 ];
 
 var chartOptions = {
   scales: {
     y: {
       beginAtZero: true,
-      max: 100
+      max: 50
     }
   }
 };

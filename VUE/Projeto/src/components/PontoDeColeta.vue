@@ -13,12 +13,10 @@ const data = await pontosEmAnalise.json();
       <h1>Ponto de coleta solicitado</h1>
     </div>
     <div class="card-row">
-      <span class="title">Empresa solicitante</span>
-      <p> {{ ponto.EMP_NOME }}</p>
+      <span class="title">Empresa solicitante </span>
+      <p style="font-size: 1.5em;"> {{ ponto.EMP_NOME }}</p>
     </div>
     <div class="card-row">
-      <p>{{ ponto.PDC_STATUS }}</p>
-      <p>{{ ponto.PDC_CEP }}</p>
     </div>
     <div class="card-row btn">
       <div class="review-btn" @click="router.push(`/dashboard/revisar_ponto/${ponto.PDC_ID}/${ponto.PDC_EMP_ID}`)">

@@ -49,6 +49,8 @@ div.content-wrapper a {
   color: var(--white);
   font-weight: bold;
   border-radius: 0.7em;
+  text-decoration: none;
+  box-shadow: #ccc 2px 1px 5px;
 }
 
 div.content-wrapper p {

@@ -19,7 +19,7 @@ function moveUser() {
 					<div class="dash-row">
 						<TotalCard icon="build" path="getEmpTotal.php" card="Total de empresa" />
 						<TotalCard icon="map" path="getPDCTotal.php" card="Total de Pontos" />
-						<TotalCard icon="map" path="getEmpTotal.php" card="Pontos pendentes" @click="moveUser()" />
+						<TotalCard icon="map" path="getReviewPdcTotal.php" card="Pontos pendentes" @click="moveUser()" />
 					</div>
 					<div class="graph-wrapper">
 						<Graph />

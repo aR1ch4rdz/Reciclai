@@ -6,7 +6,9 @@ const localUserRaw = sessionStorage.getItem('user');
 export const showHeader = ref(true);
 export const myCompany = ref(false);
 export const haveCompany = ref(false);
-export const userPoint = ref([])
+export const userPoint = ref([]);
+export const showMap = ref(false);
+
 
 export const logedUser = reactive({
   isLoged: false,

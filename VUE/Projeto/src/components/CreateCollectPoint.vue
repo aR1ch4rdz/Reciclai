@@ -1,7 +1,7 @@
 <script>
 import { Loader } from '@googlemaps/js-api-loader';
 import { ref } from 'vue';
-import { createNewCollectPoint } from '../assets/functions.js'
+import { createNewCollectPoint } from '../assets/functions.js';
 
 let res = await fetch("http://localhost:8005/depuracao.php");
 let latLngPonto = await res.json();
@@ -21,7 +21,7 @@ export default {
 
   mounted() {
     const loader = new Loader({
-      apiKey: 'API-KEY',
+      apiKey: 'AIzaSyAWCp2gRKGL0CEhESSy1KBLkbmjSOmNl2Q',
       version: 'weekly',
       libraries: ['places'],
     });
@@ -36,6 +36,10 @@ export default {
       this.map = new google.maps.Map(this.$refs.map, {
         center: igarassu,
         zoom: 10,
+        streetViewControl: false,
+        mapTypeControlOptions: {
+          mapTypeIds: ['roadmap'] // Mostrar apenas o tipo de mapa "roadmap" (ruas)
+        }
       });
       this.map.controls[google.maps.ControlPosition.TOP_CENTER].push(this.$refs.searchInput);
       this.map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(this.$refs.send);
@@ -85,6 +89,7 @@ export default {
   width: 300px;
   font-size: 16px;
   color: #333;
+  border: #ccc solid 1px;
 }
 
 .mapa{

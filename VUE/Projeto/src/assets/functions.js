@@ -1,4 +1,4 @@
-import { logedUser, myCompany, userPoint } from "./variaveis"
+import { logedUser, myCompany, userPoint, showMap } from "./variaveis"
 
 export async function createNewCollectPoint(lat, lon) {
   let formData = new FormData();
@@ -12,15 +12,16 @@ export async function createNewCollectPoint(lat, lon) {
     method: 'POST',
     body: formData
   })
-  .then(async res => {
-    let response = await res.json()
-    if (response.success) {
-      alert("ponto criado")
-    }
-    else {
-      alert("erro:" + response.message)
-    }
-  })
+    .then(async res => {
+      let response = await res.json()
+      if (response.success) {
+        alert("ponto criado")
+        showMap.value = false
+      }
+      else {
+        alert("erro:" + response.message)
+      }
+    })
 }
 
 export async function getCompany(empID) {
@@ -30,22 +31,41 @@ export async function getCompany(empID) {
     let empresa = await res.json();
     if (empresa.length > 0) {
       myCompany.value = empresa[0];
-      // console.log(myCompany.value);
+     
 
     }
   })
 }
 
-export function getUserPoints(empID){
+export function getUserPoints(empID) {
   fetch(`http://localhost:8005/getUserPdc.php?id=${empID}}`, {
     method: "GET",
-  }).then( res=> res.json())
-  .then((data)=>{
-    if (data.length > 0) {      
-      userPoint.value = data;
-      console.log(userPoint.value);
-    }else{
-      console.log("usuário não possui pontos cadastrados")
+  }).then(res => res.json())
+    .then((data) => {
+      if (data.length > 0) {
+        userPoint.value = data;
+        console.log(userPoint.value);
+
+      } else {
+        console.log("usuário não possui pontos cadastrados")
+      }
+    })
+}
+
+export function getReverseGeolocation(lat, lon) {
+  const appId = 'c83ed48a'
+  const apiKey = 'dd9a0f2e1e227ee4c962d3ab9542518d'
+  let url = `https://api.traveltimeapp.com/v4/geocoding/reverse?lat=${lat}&lng=${lon}`
+
+  return fetch(url, {
+    method: 'GET',
+    headers: {
+      'Accept': 'application/json',
+      'X-Application-Id': appId,
+      'X-Api-Key': apiKey,
+      'Accept-Language': 'en-US'
     }
   })
+    .then(res => res.json())
+    .then(data => data.features[0].properties);
 }

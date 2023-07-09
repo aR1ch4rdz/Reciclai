@@ -36,8 +36,8 @@ async function approveCompany(companyID, userID) {
 <template>
   <div v-for="ponto in data" @click="approveCompany(ponto.EMP_ID, ponto.EMP_USR_ID)" class="ponto-wrapper">
     <h1> {{ ponto.EMP_NOME }} </h1>
-    <p>{{ ponto.EMP_CNPJ }}</p>
-    <p>{{ ponto.EMP_CEP }}</p>
+    <p>Cnpj - {{ ponto.EMP_CNPJ }}</p>
+    <p>CEP - {{ ponto.EMP_CEP }}</p>
   </div>
 </template>
 

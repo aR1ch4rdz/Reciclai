@@ -15,8 +15,6 @@ function newPath(path) {
     <p @click="newPath('/dashboard')" :class="[option == '/dashboard' ? 'selected' : '']">Dashboard</p>
     <p @click="newPath('/dashboard/empresa')" :class="[option == '/dashboard/empresa' ? 'selected' : '']">Empresas em analise</p>
     <p @click="newPath('/dashboard/pontos')" :class="[option == '/dashboard/pontos' ? 'selected' : '']">Pontos em analise</p>
-    <p>Dashboard</p>
-    <p>Dashboard</p>
     <p @click="userLogout()">Sair</p>
   </div>
 </template>
